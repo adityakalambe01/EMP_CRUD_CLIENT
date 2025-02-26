@@ -1,0 +1,46 @@
+<section class="flex items-center gap-2">
+  <nav aria-label="Page navigation">
+  <ul class="flex items-center -space-x-px h-8 text-sm">
+    <li>
+      <a (click)="currentPage===0? $event.preventDefault(): onChangePage(currentPage-1)" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        <span class="sr-only">Previous</span>
+        <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+        </svg>
+      </a>
+    </li>
+
+    <li>
+      <a (click)="onChangePage(currentPage-1)" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{'hidden': (currentPage-1<1)}">{{currentPage-1}}</a>
+    </li>
+
+    <li>
+      <a aria-current="page" class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{{!currentPage? 1 : currentPage}}</a>
+    </li>
+
+    <li>
+      <a (click)="onChangePage(currentPage+1)" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{'hidden': (currentPage+1>totalPages)}">{{currentPage+1}}</a>
+    </li>
+    <li>
+      <a (click)="currentPage===totalPages? $event.preventDefault() : onChangePage(currentPage+1)" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        <span class="sr-only">Next</span>
+        <svg class="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+        </svg>
+      </a>
+    </li>
+  </ul>
+
+</nav>
+
+<form class="!w-[40px] !h-[35px] mx-auto">
+  <label for="pageSize" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white hidden">Select Limit</label>
+  <select id="pageSize" name="pageSize" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 h-full w-full" [(ngModel)]="initialPageSize" (ngModelChange)="onChangePageSize()">
+    <option value="5">5</option>
+    <option selected value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+    <option [value]="totalRecords">All</option>
+  </select>
+</form>
+</section>
