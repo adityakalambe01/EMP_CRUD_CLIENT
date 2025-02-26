@@ -8,7 +8,7 @@ import { Employee } from '../../model/Employee.interface';
   providedIn: 'root',
 })
 export class HttpService {
-  private HOST_URL: String = 'http://localhost:5050';
+  private HOST_URL: String = 'https://emp-crud-backend.onrender.com';
   constructor(@Inject(HttpClient) private httpClient: HttpClient) {}
 
   get(url: string, params?: HttpParams): Observable<any> {
